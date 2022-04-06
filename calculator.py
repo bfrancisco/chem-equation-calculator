@@ -68,7 +68,7 @@ if __name__ == '__main__':
     st.caption("© Bryan Francisco")
 
     # input
-    unbalanced = st.text_input('Insert Chemical Equation:', 'C_4*H_10+O_2->C_1*O_2+H_2*O_1')
+    unbalanced = st.text_input('Insert Chemical Equation:', 'S_1+H_1*N_1*O_3->H_2*S_1*O_4+N_1*O_2+H_2*O_1')
     # on button click
     bttn = st.button('Balance equation')
 
@@ -93,7 +93,7 @@ if __name__ == '__main__':
                     elem, moles = addend.split('_')
                     latex += elem
                     if moles != '1':
-                        latex += '_' + int(moles)
+                        latex += '_' + moles
                 latex += '+'
             latex = latex[:-1]
             latex += ' \\rightarrow '
@@ -105,7 +105,7 @@ if __name__ == '__main__':
                     elem, moles = addend.split('_')
                     latex += elem
                     if moles != '1':
-                        latex += '_' + int(moles)
+                        latex += '_' + moles
                 latex += '+'
             latex = latex[:-1]
             
