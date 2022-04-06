@@ -44,7 +44,7 @@ def processInput(s):
         addend = reactants[i]
         lst = addend.split("*")
         for factor in lst:
-            elem, moles = factor.split(":")
+            elem, moles = factor.split("_")
             factors.append((i, elem, int(moles)))
             elements.append(elem)
     
@@ -52,7 +52,7 @@ def processInput(s):
         addend = products[i]
         lst = addend.split("*")
         for factor in lst:
-            elem, moles = factor.split(":")
+            elem, moles = factor.split("_")
             factors.append((i+leftN, elem, -int(moles)))
     
     return (leftN, rightN, factors, elements, reactants, products)
@@ -68,7 +68,7 @@ if __name__ == '__main__':
     st.caption("© Bryan Francisco")
 
     # input
-    unbalanced = st.text_input('Insert Chemical Equation:', 'C:4*H:10+O:2->C:1*O:2+H:2*O:1')
+    unbalanced = st.text_input('Insert Chemical Equation:', 'C_4*H_10+O_2->C_1*O_2+H_2*O_1')
     # on button click
     bttn = st.button('Balance equation')
 
@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 latex += "\\textcolor{blue}{" + str(coeffs[i]) + "} "
                 facts = reactants[i].split('*')
                 for addend in facts:
-                    elem, moles = addend.split(':')
+                    elem, moles = addend.split('_')
                     latex += elem
                     if moles != '1':
                         latex += '_' + moles
@@ -102,7 +102,7 @@ if __name__ == '__main__':
                 latex += "\\textcolor{blue}{" + str(coeffs[i+leftN]) + "} "
                 facts = products[i].split('*')
                 for addend in facts:
-                    elem, moles = addend.split(':')
+                    elem, moles = addend.split('_')
                     latex += elem
                     if moles != '1':
                         latex += '_' + moles
@@ -111,9 +111,9 @@ if __name__ == '__main__':
             
             st.latex(latex)
             
-            # H:1*Cl:1+Ca:1*C:1*O:3->Ca:1*Cl:2+H:2*O:1+C:1*O:2
-            # C:3*H:6+O:2->C:1*O:2+H:2*O:1
-            # S:1+H:1*N:1*O:3->H:2*S:1*O:4+N:1*O:2+H:2*O:1
-            # C:4*H:10+O:2->C:1*O:2+H:2*O:1
+            # H_1*Cl_1+Ca_1*C_1*O_3->Ca_1*Cl_2+H_2*O_1+C_1*O_2
+            # C_3*H_6+O_2->C_1*O_2+H_2*O_1
+            # S_1+H_1*N_1*O_3->H_2*S_1*O_4+N_1*O_2+H_2*O_1
+            # C_4*H_10+O_2->C_1*O_2+H_2*O_1
         except:
             st.error("An error occured." + " Exit code:" + str(error_code))
