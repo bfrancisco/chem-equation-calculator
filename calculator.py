@@ -93,7 +93,7 @@ if __name__ == '__main__':
                     elem, moles = addend.split('_')
                     latex += elem
                     if moles != '1':
-                        latex += '_' + moles
+                        latex += '_{' + moles + '}'
                 latex += '+'
             latex = latex[:-1]
             latex += ' \\rightarrow '
@@ -105,7 +105,7 @@ if __name__ == '__main__':
                     elem, moles = addend.split('_')
                     latex += elem
                     if moles != '1':
-                        latex += '_' + moles
+                        latex += '_{' + moles + '}'
                 latex += '+'
             latex = latex[:-1]
             
